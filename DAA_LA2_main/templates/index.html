@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart City Route Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Smart City Route Analyzer</h1>
+
+    <form method="POST">
+        <label>Source City:</label>
+        <select name="source" required>
+            {% for city in cities %}
+            <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Destination City:</label>
+        <select name="destination" required>
+            {% for city in cities %}
+            <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Compare All Algorithms</button>
+    </form>
+
+    {% if cost_data %}
+    <div class="result">
+        <h2>Results:</h2>
+
+        <h3>1️⃣ Delivery Cost Finder</h3>
+        <p>Path: {{ cost_data.path | join(' → ') }}</p>
+        <p>Total Cost: ₹{{ cost_data.value }}</p>
+        <p>Execution Time: {{ cost_data.exec_time }} ms</p>
+
+        <h3>2️⃣ Delivery Time Finder</h3>
+        <p>Path: {{ time_data.path | join(' → ') }}</p>
+        <p>Total Time: {{ time_data.value }} hours</p>
+        <p>Execution Time: {{ time_data.exec_time }} ms</p>
+
+        <h3>3️⃣ Prim’s Algorithm (MST)</h3>
+        <p>Total MST Cost: ₹{{ mst_data.value }}</p>
+        <ul>
+            {% for a, b, c in mst_data.edges %}
+            <li>{{ a }} — {{ b }} : ₹{{ c }}</li>
+            {% endfor %}
+        </ul>
+        <p>Execution Time: {{ mst_data.exec_time }} ms</p>
+
+        <h2>⚡ Algorithm Comparison (Time Complexity)</h2>
+        <table>
+            <tr><th>Algorithm</th><th>Execution Time (ms)</th></tr>
+            {% for item in comparison %}
+            <tr>
+                <td>{{ item.Algorithm }}</td>
+                <td>{{ item['Time (ms)'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
