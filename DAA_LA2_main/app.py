@@ -6,7 +6,7 @@ app = Flask(__name__)
 # List of cities
 cities = ["Mumbai", "Pune", "Goa", "Hyderabad", "Bengaluru", "Chennai", "Delhi", "Kolkata"]
 
-# Cost routes (₹)
+# Cost routes (₹)   BY Anshul Shahu
 cost_routes = {
     ("Mumbai", "Pune"): 200,
     ("Pune", "Goa"): 300,
@@ -18,7 +18,7 @@ cost_routes = {
     ("Delhi", "Mumbai"): 500
 }
 
-# Time routes (hours)
+# Time routes (hours)   By Krishna Deole
 time_routes = {
     ("Mumbai", "Pune"): 3,
     ("Pune", "Goa"): 6,
@@ -30,7 +30,7 @@ time_routes = {
     ("Delhi", "Mumbai"): 12
 }
 
-# Graph for Prim’s Algorithm
+# Graph for Prim’s Algorithm  By Mandar Amte
 graph = {
     "Mumbai": {"Pune": 200, "Delhi": 500},
     "Pune": {"Mumbai": 200, "Goa": 300},
@@ -43,7 +43,7 @@ graph = {
 }
 
 # -----------------------------
-# 1️⃣ Find Route by Cost
+# 1️⃣ Find Route by Cost          BY ANSHUL SHAHU
 # -----------------------------
 def find_route_cost(source, destination):
     path = [source]
@@ -75,7 +75,7 @@ def find_route_cost(source, destination):
 
 
 # -----------------------------
-# 2️⃣ Find Route by Time
+# 2️⃣ Find Route by Time          BY Krishna Deole
 # -----------------------------
 def find_route_time(source, destination):
     path = [source]
@@ -107,7 +107,7 @@ def find_route_time(source, destination):
 
 
 # -----------------------------
-# 3️⃣ Prim’s Algorithm (MST)
+# 3️⃣ Prim’s Algorithm (MST)      BY MMANDAR AMTE
 # -----------------------------
 def prims_algorithm(start_city):
     visited = set()
@@ -206,3 +206,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
