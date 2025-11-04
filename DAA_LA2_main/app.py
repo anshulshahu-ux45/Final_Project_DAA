@@ -78,33 +78,35 @@ def find_route_cost(source, destination):
 # 2️⃣ Find Route by Time          BY Krishna Deole
 # -----------------------------
 def find_route_time(source, destination):
-    path = [source]
-    total_time = 0
-    current = source
+    path = [source]                # store route path
+    total_time = 0                 # total time taken
+    current = source               # start from source node
 
-    for _ in range(100):
-        if current == destination:
+    for _ in range(100):           # limit to avoid infinite loop
+        if current == destination: # if reached destination stop
             return path, total_time
 
-        moved = False
-        for (a, b), t in time_routes.items():
-            if a == current and b not in path:
+        moved = False              # check if movement possible
+
+        for (a, b), t in time_routes.items():  # check each edge
+            if a == current and b not in path: # if next node is b
                 path.append(b)
                 total_time += t
                 current = b
                 moved = True
                 break
-            if b == current and a not in path:
+
+            if b == current and a not in path: # if next node is a
                 path.append(a)
                 total_time += t
                 current = a
                 moved = True
                 break
-        if not moved:
+
+        if not moved:             # no movement → no route forward
             break
 
-    return (path, total_time) if current == destination else (None, None)
-
+    return (path, total_time) if current == destination else (None, None) # return result
 
 # -----------------------------
 # 3️⃣ Prim’s Algorithm (MST)      BY MMANDAR AMTE
@@ -206,4 +208,5 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
